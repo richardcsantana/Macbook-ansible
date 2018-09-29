@@ -1,0 +1,18 @@
+---
+  - name: Create tmp directory
+    file:
+      path: "{{ansible_local_home}}/tmp"
+      state: directory
+      owner: "{{ansible_local_user}}"
+  - name: Download the script
+    get_url:
+      url: https://raw.githubusercontent.com/creationix/nvm/{{nvm_version}}/install.sh
+      dest: "{{ansible_local_home}}/tmp/install_nvm.sh"
+      mode: 0740
+  - name: install nvm
+    script: "{{ansible_local_home}}/tmp/install_nvm.sh"
+  - name: Destroy tmp directory
+    file:
+      path: "{{ansible_local_home}}/tmp"
+      state: absent
+      owner: "{{ansible_local_user}}"

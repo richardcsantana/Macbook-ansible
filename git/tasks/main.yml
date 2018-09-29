@@ -1,0 +1,14 @@
+---
+    - name: Install terminal needs
+      homebrew: 
+        name: git
+        state: latest 
+        update_homebrew: yes
+    - name: Copy ssh config
+      copy:
+        src: config
+        dest: "{{ansible_local_home}}/.ssh/config"
+    - name: Copy gitconfig
+      template:
+        src: gitconfig.j2
+        dest: "{{ansible_local_home}}/.gitconfig"

@@ -1,0 +1,29 @@
+export ZSH=/Users/{{ansible_local_user}}/.oh-my-zsh
+
+ZSH_THEME="steeef"
+
+DISABLE_UPDATE_PROMPT=true
+
+plugins=(git docker jump osx)
+
+source $ZSH/oh-my-zsh.sh
+source $HOME/.rvm/scripts/rvm
+
+function _completemarks {
+  reply=($(ls $MARKPATH))
+}
+
+compctl -K _completemarks jump
+compctl -K _completemarks unmark
+
+alias ll='ls -alFh';
+alias la='ls -A';
+alias l='ls -CF';
+alias g=git;
+alias get='brew install';
+alias dck=docker;
+alias vgt=vagrant;
+
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "/Users/{{ansible_local_user}}/.gvm/bin/gvm-init.sh" ]] && source "/Users/{{ansible_local_user}}/.gvm/bin/gvm-init.sh"

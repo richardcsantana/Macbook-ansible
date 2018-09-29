@@ -1,0 +1,11 @@
+---
+    - name: Install java
+      homebrew_cask: 
+        name: java
+        state: upgraded
+        accept_external_apps: True
+    - name: Install Intellij
+      homebrew_cask:
+        name: intellij-idea
+        state: upgraded
+        accept_external_apps: True

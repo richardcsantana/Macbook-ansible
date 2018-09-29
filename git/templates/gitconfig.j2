@@ -1,0 +1,23 @@
+[user]
+	email = {{git_user_email}}
+	name = {{git_user_name}}
+[alias]
+	co = checkout
+	cb = checkout -b
+	ci = commit
+	cm = commit -m
+	st = "status --short --branch"
+	cl = clone
+	br = branch
+	pl = pull --rebase
+	ps = push -u
+	mm = merge --no-ff
+	ai = add -i
+	sync = "!git fetch upstream && git rebase upstream/master"
+	please = "push --force-with-lease"
+	commend = "commit --amend --no-edit"
+	it = "!git init && git commit -m 'root' --allow-empty"
+	grog = "log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'"
+	staash = "!git stash && git pull --rebase && git stash pop"
+[push]
+	default = matching

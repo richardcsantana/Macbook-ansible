@@ -1,0 +1,29 @@
+---
+    - name: Install terminal needs
+      homebrew: 
+        name: zsh
+        state: latest 
+        update_homebrew: yes
+    - name: Create directory for oh-my-zsh
+      file:
+        path: "{{ansible_local_home}}/.oh-my-zsh"
+        state: directory
+        owner: "{{ansible_local_user}}"
+    - name: Clone oh-my-zsh repo
+      git: 
+        repo: "{{ item.repo }}"
+        dest: "{{ item.dest }}"
+      with_items:
+        - {repo: 'https://github.com/robbyrussell/oh-my-zsh.git', dest: "{{ansible_local_home}}/.oh-my-zsh"}
+    - name: Remove zshrc file
+      file:
+        path: "{{ansible_local_home}}/.zshrc"
+        state: absent
+    - name: Copy .zshrc file
+      template:
+        src: zshrc.j2
+        dest: "{{ansible_local_home}}/.zshrc"
+    - name: change default terminal
+      user:
+        name: "{{ansible_local_user}}"
+        shell: /bin/zsh
