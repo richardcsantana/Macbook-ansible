@@ -1,0 +1,8 @@
+---
+    - name: Install aws
+      homebrew: 
+        name: awscli
+        state: latest 
+
+        
+
