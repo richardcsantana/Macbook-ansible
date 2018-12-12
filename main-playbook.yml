@@ -16,4 +16,5 @@
     - nvm
     - java
     - go
-    - aws-cli
+    - tmux
+    - virtualbox
