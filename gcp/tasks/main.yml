@@ -3,3 +3,11 @@
       homebrew_cask:
         name: google-cloud-sdk
         state: upgraded
+    - name: export paths
+      lineinfile:
+        path: "{{ansible_local_home}}/.zshrc"
+        regexp: '{{ item.regexp}}'
+        line: '{{ item.line}}'
+      with_items:
+        - { regexp: 'source \'/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\'', line: 'source \'/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\''}
+        - { regexp: 'source \'/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'', line: 'source \'/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc''}

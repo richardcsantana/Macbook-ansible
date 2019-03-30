@@ -1,9 +1,26 @@
 ---
-    - name: Install java
-      homebrew_cask: 
-        name: java
-        state: upgraded
-        accept_external_apps: True
+    - name: Create tmp directory
+      file:
+        path: "{{ansible_local_home}}/tmp"
+        state: directory
+        owner: "{{ansible_local_user}}"
+    - name: Download sdkman installer
+      get_url:
+        url: https://get.sdkman.io
+        dest: "{{ansible_local_home}}/tmp/sdk-man-installer.sh"
+        mode: 0740
+    - name: Execute the sdkman
+      shell: "{{ansible_local_home}}/tmp/sdk-man-installer.sh"
+    - name: Destroy tmp directory
+      file:
+        path: "{{ansible_local_home}}/tmp"
+        state: absent
+        owner: "{{ansible_local_user}}"
+    - name: Install java and gradle
+      shell: ". {{ansible_local_home}}/.sdkman/bin/sdkman-init.sh && sdk install {{ item.app }} {{ item.version}}"
+      loop:
+        - { app: 'java', version: '8.0.201-oracle' }
+        - { app: 'gradle', version: '5.1.1' }
     - name: Install Intellij
       homebrew_cask:
         name: intellij-idea

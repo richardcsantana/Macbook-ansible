@@ -1,0 +1,24 @@
+---
+    - name: Install android ndk e sdk
+      homebrew_cask:
+        name: '{{ item }}'
+        state: upgraded
+        accept_external_apps: True
+      loop:
+        - 'android-sdk'
+        - 'android-ndk'
+    - name: export paths
+      lineinfile:
+        path: "{{ansible_local_home}}/.zshrc"
+        regexp: '{{ item.regexp }}'
+        line: '{{ item.line }}'
+      with_items:
+        - { regexp: 'export ANDROID_SDK_ROOT', line: 'export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"' }
+        - { regexp: 'export ANDROID_HOME', line: 'export ANDROID_HOME="$ANDROID_SDK_ROOT"' }
+        - { regexp: 'export ANDROID_NDK_HOME', line: 'export ANDROID_NDK_HOME="/usr/local/share/android-ndk"' }
+        - { regexp: 'export ANDROID_BT_VERSION', line: 'export ANDROID_BT_VERSION="$(ls -tr $ANDROID_SDK_ROOT/build-tools | sort | tail -1)"' }
+        - { regexp: 'export PATH=\$ANDROID_SDK_ROOT/bin', line: 'export PATH=$ANDROID_SDK_ROOT/bin:$PATH' }
+        - { regexp: 'export PATH=\$ANDROID_SDK_ROOT/build', line: 'export PATH=$ANDROID_SDK_ROOT/build-tools/$ANDROID_BT_VERSION:$PATH' }
+        - { regexp: 'export PATH=\$ANDROID_SDK_ROOT/platform', line: 'export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH' }
+        - { regexp: 'export PATH=\$ANDROID_SDK_ROOT/tools', line: 'export PATH=$ANDROID_SDK_ROOT/tools:$PATH' }
+        - { regexp: 'export PATH=\$ANDROID_NDK_HOME', line: 'export PATH=$ANDROID_NDK_HOME/:$PATH' }
