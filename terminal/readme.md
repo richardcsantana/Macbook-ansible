@@ -1,6 +1,6 @@
-# Oh-my-zsh
+# Terminal
 
-Essa role faz a instalação do zsh e oh-my-zsh com a skin:
+Essa role faz a instalação do iterm2, tmux, zsh e oh-my-zsh com a skin:
 
 * steeef
  

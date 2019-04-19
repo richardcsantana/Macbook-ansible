@@ -10,14 +10,13 @@
         ansible_local_home: "/Users/{{ansible_local_user}}"
         failed_when: ansible_local_home == '/Users/'
   roles:
-#    - visual-studio-code
-#    - git
-#    - oh-my-zsh
-#    - nvm
-    - android
+    - terminal
+    - visual-studio-code
+    - git
+    - nvm
+    # - android
     - java
-#    - go
-#    - tmux
-#    - virtualbox
-#    - postman
-#    - gcp
+    - go
+    - virtualbox
+    - postman
+    - gcp

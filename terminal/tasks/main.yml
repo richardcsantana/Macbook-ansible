@@ -27,3 +27,12 @@
       user:
         name: "{{ansible_local_user}}"
         shell: /bin/zsh
+    - name: Install tmux
+      homebrew:
+        name: tmux
+        state: upgraded
+    - name: Install iterm2
+      homebrew_cask:
+        name: tmux
+        state: upgraded
+        accept_external_apps: True
