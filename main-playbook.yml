@@ -13,10 +13,10 @@
     - terminal
     - visual-studio-code
     - git
-    - nvm
     # - android
     - java
     - go
     - virtualbox
     - postman
     - gcp
+    - nvm
