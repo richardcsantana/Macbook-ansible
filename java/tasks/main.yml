@@ -19,7 +19,7 @@
     - name: Install java and gradle
       shell: ". {{ansible_local_home}}/.sdkman/bin/sdkman-init.sh && sdk install {{ item.app }} {{ item.version}}"
       loop:
-        - { app: 'java', version: '8.0.201-oracle' }
+        - { app: 'java', version: '8.0.212-zulu' }
         - { app: 'gradle', version: '5.1.1' }
     - name: Install Intellij
       homebrew_cask:
