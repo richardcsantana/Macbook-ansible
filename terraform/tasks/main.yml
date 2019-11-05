@@ -1,0 +1,6 @@
+---
+    - name: Install terraform
+      homebrew: 
+        name: terraform
+        state: latest 
+        update_homebrew: no
